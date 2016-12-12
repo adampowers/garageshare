@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <title>GarageShare</title>
+	  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!--  jQuery http://jquery.com/ -->
+    <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
+
+    <!-- Base Stylsheets http://twitter.github.com/bootstrap/ -->
+    <link rel="stylesheet/less" type="text/css" href="css/lib/bootstrap.less" >
+    <link rel="stylesheet" href="css/lib/jquery.fancybox.css" >
+
+    <!-- LESS Stylesheet -->
+   <!-- <link rel="stylesheet/less" type="text/css" href="css/main.css">
+    
+    <!-- Bootstrap Javascripts http://twitter.github.com/bootstrap/javascript.html -->
+    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="js/lib/bootstrap-modal.js"></script>
+
+    <!-- Fancybox Lightbox http://fancyapps.com/fancybox/#examples -->
+    <!--<script src="js/lib/jquery.fancybox.js"></script>-->
+
+    <!-- LESS CSS (lesscss.org) -->
+    <script src="js/lib/less.js" type="text/javascript"></script>
+    
+	<script src="js/prof.js"></script>  
+
+	  <link rel="stylesheet" type="text/css" href="css/form.css">	
+	  <script src="./js/narine.js" type="text/javascript"></script>
+	    <script type="text/javascript" src="../Project/Code/js/taffydb/taffy.js"></script>    
+    <script type="text/javascript" src="../Project/Code/js/user.js"></script>
+<!--	<script type="text/javascript" src="http://connect.facebook.net/en_US/all.js"> </script>-->
+	  <script>//This is the code for the startup precedures for the Facebook Authentication API
+		</script>
+    </head>	
+    <body> 
+	<div id="wrap">
+	<p id="userName"> </p>
+		 <div id="fb-root"></div>
+		 <div id="fbPic">
+		 <div class="LoginTestContainer">
+			<img src="img/gslogo_larger.png" id="LoginLogo"/> <br>  
+				<form  id="loginForm">
+					<input type="text" class="loginbox" placeholder="Username" id="usernameLogin" tabindex="1">
+				    <div class="infoLogIn" id="logInUser"> </div>					
+					<br>
+					<input type="password" class="loginbox" placeholder="Password" id="passwordLogin" tabindex="2">
+				    <div class="infoLogIn" id="logInPass"> </div>					
+					<br>
+					<button type="submit" class="btn btn-primary" id="login" tabindex="3">Sign In</button>
+					<button class="modalInput btn" rel="#prompt" id="signup" tabindex="4">Create Account</button>
+								
+				</form>
+		</div>
+	    <div class="modal" id="prompt">
+		<div id="content">
+          <form id="jform"  method="post">
+			<h1>Create a GarageShare Account! </h1>
+			 <div id="ContainLeft"> <!--<fieldset class="formLeft">-->
+				<legend>Personal Info</legend>				
+					<label for="realName">Full Name*: </label>
+					<input type="text" name="realName" size="30" id="realName" onFocus="this.select()"/> 
+						<div class="info" id="nameInfo"> </div>
+					<br>
+					<label for="addressLine1">Address: </label>
+					<input type="text" name="addressLine1" placeholder="Line 1" size="30"id="addressLine1" /><br>
+					<label for="addressLine2"> </label>
+					<input type="text" name="addressLine2" size="30" id="addressLine2" /> 	<br>
+					<label for="city">City: </label>
+					<input type="text" name="city" size="30"id="city" /> <br>
+					<label for="state">State: </label>
+					<input type="text" name="state" placeholder="2-letter" size="30"id="state" /> <br>
+					<label for="zip">Zip*: </label>
+					<input type="text" name="zip" size="30" placeholder="numeric" id="zip" />
+						<div class="info" id="zipInfo"> </div>
+					<br>
+			<!--</fieldset>-->
+				</div>
+			<div id="ContainRight">
+			<!--<fieldset class="formRightSignUp">--->
+				<legend>Contact Info</legend>
+					<label for="phoneNumber">Phone Number*: </label>
+					<input type="text" name="phoneNumber" placeholder="numbers only" size="30"id="phoneNumber" onFocus="this.select()" /> 
+					<div class="info" id="phoneInfo"> </div>
+
+					<br>
+					<label for="email">Email*: </label>
+					<input type="text" name="email" size="30"id="email" placeholder="you@mail.com" onFocus="this.select()" />
+						<div class="info" id="emailInfo"> </div>
+					<br>
+				<label for="username">Username*: </label>
+				<input type="text" name="username" placeholder="no special characters" size="30"id="username" /> <br>
+				<label for="password">Create Password: </label>
+				<input type="password" name="password" size="30"id="password" /> <br>
+				<label for="password2">Retype Password: </label>
+				<input type="password" name="password" size="30"id="password2" />
+				<div class="info" id="newPassInfo"> </div>
+
+				<br>
+			<!--</fieldset>--->
+			</div>
+		   	<div class="buttons">
+				<button type="reset" class="reset btn" id="reset" onClick="this.form.reset();" > Reset </button>
+				<button type="submit" class="submit btn btn-primary" id="Send"> Submit </button>
+				<button type="button" class="btn" id="close"> Cancel </button>
+			</div>
+			</form> <br />
+		</div>
+		</div>
+	<!-- end of forms -->
+	<!-- start bottom info -->
+	<div class="container">
+    <div class="mainrow">
+      <div class="span12"><h1>&nbsp;&nbsp;Share Stuff you own with Friends you trust.</h1>
+      <h1>&nbsp;&nbsp;<button class="modalInput btn btn-success btn-large" rel="#prompt" tabindex="6">Sign up</button>&nbsp;now and start sharing with your friends!</h1><br>
+      </div>	
+    </div>
+    <div class="row" id="breakspace">
+		<div class="span6"><h2>&nbsp;&nbsp;Help friends</h2><br>
+			<div class="span2"><img src="img/trust.png" width:90px height:90px></div>
+			<div class="span3">Help a friend out by lending them your stuff. Make their day and get major brownie points at the same time. GarageShare lets you post your stuff so your friends can see what you'd like to lend.</div>			
+		</div>
+		<div class="span6"><h2>&nbsp;&nbsp;Save money</h2><br>
+			<div class="span2"><img src="img/piggyBank.png" width:120px height:100px></div>
+			<div class="span3">Why spend money on expensive tools you need just once, when you can easily borrow them from your friends online? GarageShare helps you find stuff that your friends have on a convenient map.</div>
+      </div>
+    </div>
+    <div class="row">
+		<div class="span6"><h2>&nbsp;&nbsp;Save the planet</h2>
+			<div class="span2"><img src="img/earth.png" width:90px height:90px></div>
+			<div class="span3"><br><br>We all have too much stuff already. Reduce consumption and waste by sharing things with your friends. GarageShare makes it easy to do your part.</div>
+		</div>
+	  <div class="span6"><h2>&nbsp;&nbsp;Track your stuff</h2><br>
+      <div class="span2"><img src="img/track.png" width:120px height:100px></div>
+      <div class="span3"><br>Tired of losing stuff you lent to your friends? Or maybe you're still wondering who you borrowed that Dremel kit from. GarageShare helps you track your stuff, send reminders, and get alerts.</div>
+	  </div>
+    </div>
+    <div class="row" id="bottomrow">
+      <div class="span6"><br><br><h2>&nbsp;&nbsp;And ask your friends to join us too.</h2></div>
+	  <div class="span5" id="imgcontainer">
+		<img src="img/facebook.png" class="iconsocial" alt="facebook"/>
+		<img src="img/twitter.png" class="iconsocial" alt="twitter"/>
+		<img src="img/google.png" class="iconsocial" alt="google"/>
+		<img src="img/linkedin.png" class="iconsocial" alt="linkedin"/>
+		<img src="img/tumblr.png" class="iconsocial" alt="tumblr"/>
+		<img src="img/blogger.png" class="iconsocial" alt="blogger"/>
+		<img src="img/stumble.png" class="iconsocial" alt="stumble"/>
+		<img src="img/friend-feed.png" class="iconsocial" alt="friend-feed"/>
+	  </div>
+	  </div>
+    </div>  
+    </div>
+	</div>
+    </body>
+ </html>

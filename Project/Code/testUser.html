@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="./js/bootstrap/css/bootstrap.css">
+        <!--Add scripts -->
+    <script type="text/javascript" src="./js/taffydb/taffy.js"></script>    
+    <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/item.js"></script>
+    <script type="text/javascript" src="./js/user.js"></script>
+    <script type="text/javascript">
+    //"use strict";
+    var map;
+    var userDB;
+    var currentUser;
+    var currentUserId = 1;
+    
+    function initialize() 
+    {
+      //============================================================
+      // SETUP DATABASES
+      //============================================================        
+      userDB = TAFFY();
+      userDB.insert(userList);
+      itemDB = TAFFY();
+      itemDB.insert(itemList);
+      
+      
+      //============================================================
+      // SETUP CURRENT USER
+      //============================================================
+      currentUser = userDB({userId:currentUserId}).first();
+      if (currentUser == undefined) 
+      {
+        console.log("No user found with id " + currentUserId + "!!");
+      }
+      displayUser(currentUser);      
+    }
+    
+    function displayUser(r)
+    {
+      var datadiv = document.getElementById("dataContainer");
+//Create a child div called entry
+      var entry = document.createElement("div");
+      entry.className = "searchResult";
+      entry.id = "entry-" + r.itemId;
+      
+      //Build the string of innerHTML
+      var buildHTML;
+      buildHTML = "<div class=\"title\">Owner:" + r.realName + "</div></div>\n";
+      buildHTML += "<div class=\"address\">" + r.addressL1 + "<br>" + r.city + ", " + r.state;
+      //TODO add owner.phone to schema and user.js
+      buildHTML += " " + r.zip + "<br>" + r.phone + "</div>";
+      buildHTML += "<div class=\"float-clear\"></div>";
+      
+      //Set the string of innerHTML
+      entry.innerHTML = buildHTML;
+
+      //Add the child to datadiv
+      datadiv.appendChild(entry);
+     
+
+    }
+    
+    </script>
+
+
+	</head>
+<body onload="initialize()">
+  <div id="searchContainer" class="well span6">
+
+    <div id="dataContainer">
+     
+    </div>    
+       
+  </div>
+
+	<div id="itemContainer"></div>
+</body>
+</html> 

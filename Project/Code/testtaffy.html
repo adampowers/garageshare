@@ -1,0 +1,81 @@
+<html>
+	<head>
+
+	</head>
+	<body>
+  
+    <!-- The container that will be populated with the data -->
+		<div id="dataContainer"></div>
+    <!-- The button to run insertItem() -->
+    <input type="button" value="Insert item" onclick="insertItem()">
+    
+    <!--Add scripts -->
+    <script type="text/javascript" src="./js/taffydb/taffy.js"></script>
+    <script type="text/javascript" src="./js/item.js"></script>
+    <script type="text/javascript" src="./js/user.js"></script>
+    <script type="text/javascript">
+
+    //Create a database 
+    //This database only exists during the session of javascript. In other works, 
+    //when you reload the page it's gone and needs to be recreated.
+    //The usefulness of a db is mostly so you are able to access the information
+    //that your component needs easily.
+		var itemDB = TAFFY();
+    //Populate with items from itemList which was loaded as a JSON from item.js
+    itemDB.insert(itemList);
+    //Run function reload to populate the dataContainer div on the page
+    reloadAllItemsFromUser(3);
+    
+    //Get user information
+    var userDB = TAFFY();
+    userDB.insert(userList);
+    var result = userDB({userId:"3"}).first();
+    alert("user's name is " + result.realName + " " + result.username); 
+    
+    
+    //This function inserts a new item into the data base and reruns the 
+    //reloadALLItems function.
+    function insertItem()
+    {
+      //Insert item into DB
+      itemDB.insert({"itemId":"5","ownerId":"1","title":"OBD-II Scanner","description":"Don't pay $80 to read that code!","image":"http://i.walmartimages.com/i/mp/00/79/69/92/39/0079699239002_P321146_100X100.jpg","similarItemUrl":"http://www.walmart.com/ip/Actron-CP9125-OBD-II-Pocket-Scan/17218913","categoryId":"3","Notes":""});
+      reloadAllItemsFromUser("1");
+    }
+    
+    //This function fills the div datacontainer with some info from the items list
+    function reloadAllItemsFromUser(user)
+    {
+      //Search for all items that have ownerId = 1
+      var result = itemDB({ownerId:user});
+      //Alert number of items found
+      console.log("Found " + result.count() + " items.");
+      //Get the dataContainer element
+      var datadiv = document.getElementById("dataContainer");
+      //Empty it of children so you can refill with current status
+      if ( datadiv.hasChildNodes() )
+      {
+          while ( datadiv.childNodes.length >= 1 )
+          {
+              datadiv.removeChild( datadiv.firstChild );       
+          } 
+      }
+      //For each result r
+      result.each(function (r) {
+      
+        //Create a child div called entry
+        var entry = document.createElement("div");
+        entry.className = "searchItem";
+        entry.id = "entry-" + r.itemId;
+        
+        //Fill the innerHTML with the following data.
+        entry.innerHTML = "<div class=title>" + r.title + "</h1>";
+        entry.innerHTML += '<img src=\"' + r.image + '\" alt=\"' + r.title + '\">';
+        entry.innerHTML += r.description;
+        datadiv.appendChild(entry);
+        });
+    }
+    
+		</script>
+  </body>
+
+</html>

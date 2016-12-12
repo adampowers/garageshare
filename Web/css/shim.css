@@ -1,0 +1,448 @@
+
+@import "mainvariables.less";
+
+#mainRow a.btn-supermini {
+  font-size: 11px;
+  line-height: 11px;
+
+  box-shadow:none;
+  background-image:none;
+  border-radius: 4px;
+  
+  background-color: @c_dkGreen;
+  padding: 3px 10px 3px 10px;
+  
+  text-shadow:none;
+  color:@c_ltGreen;
+  margin:10px 5px;
+}
+#mainRow a.btn-supermini:hover{
+  color:white;
+}
+
+#borrowedContainer .thumb { 
+  width: 50px; 
+  height: 60px; 
+  margin-right: 10px;
+}
+
+.altCol .thumb 
+{
+  float:left;  
+}
+
+.altCol .itemData 
+{
+  float:left;  
+}
+
+.altCol .itemOptions
+{
+  font-size: .8em;
+  margin-top: 8px;
+}
+
+#lentContainer .thumb { 
+  width: 50px; 
+  height: 60px; 
+  float: left;
+  margin-right: 10px;
+}
+.time
+{
+  font-size: 11px;
+  line-height: 12px;
+  margin-top:5px;
+
+}
+.past-due
+{
+  border-radius: 8px 8px 8px 8px;
+  padding: 3px 10px;  
+  background-color:@c_Orange;
+  color:white;
+}
+
+.due-soon
+{
+  border-radius: 8px 8px 8px 8px;
+  padding: 3px 10px;
+  background-color:white;
+  border: solid 1px @c_Orange;
+  color:@c_Orange;
+}
+/*================================================================================
+ * DIALOG
+ *================================================================================*/
+body div.ui-dialog
+{
+  background-clip: padding-box;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  border-radius: 0px;
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+  padding:0px;
+}
+body div.ui-dialog-titlebar
+{
+  border-radius: 0px;
+}
+
+body div.ui-dialog-header
+{
+  border-bottom: 3px solid @c_dkGreen;
+  padding: 9px 15px;
+}
+body div.ui-dialog-buttonset button:first-child
+{
+  background-color: #006DCC;
+}
+body div.ui-dialog-buttonset button
+{
+  -moz-border-bottom-colors: none;
+  -moz-border-image: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  background-color: #F5F5F5;
+  background-image: -moz-linear-gradient(center top , #FFFFFF, #E6E6E6);
+  background-repeat: repeat-x;
+  border-color: #CCCCCC #CCCCCC #BBBBBB;
+  border-radius: 4px 4px 4px 4px;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
+  color: #333333;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 13px;
+  line-height: 18px;
+  margin-bottom: 0;
+  padding: 4px 10px;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75);
+  vertical-align: middle;
+}
+body div.ui-widget-content
+{
+  background-color: white;
+}
+body div.ui-widget-header
+{
+  background-color: #FFFFFF;
+  color:@c_Orange;
+  border:none;
+  border-top:solid 3px @c_Orange;
+  font-size:1.2em;
+}
+
+body .ui-dialog-buttonpane.ui-widget-content
+{
+  border-top:solid 1px @c_dkGreen;
+  border-bottom:solid 3px @c_dkGreen;
+}
+body .ui-widget-header .ui-icon {
+    background-image: url("../img/glyphicons-halflings.png");
+    background-position: 14px 14px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 14px;
+    line-height: 14px;
+    background-position:-310px 1px;
+  
+}
+
+.ui-widget-content .itemPanel tr.similarItem
+{
+  
+}
+.ui-widget-content .itemData a 
+{
+  color:@c_Orange;
+}
+
+.ui-widget-content .itemPanel
+{
+  margin-top:10px;
+}
+.ui-widget-content .itemPanel .itemThumb
+{
+  width:150px;
+  height:150px;
+  float:left;
+  border:solid 1px #EEE;
+}
+.ui-widget-content .itemPanel .thumb
+{
+  width:100%;
+  height:100%;
+}
+
+.ui-widget-content .itemPanel .itemData
+{
+  width:400px;
+  float:left;
+  margin-left:10px;
+}
+.ui-widget-content .itemPanel .title
+{
+  color:@c_Orange;
+  font-size:1.2em;
+  font-weight:bold;
+}
+.ui-widget-content .itemData .ilabel
+{
+  width:100px;
+  vertical-align:top;
+}
+
+.ui-widget-content .itemData tr td:nth-child(2)
+{
+  vertical-align:top;
+  padding-right:10px;
+}
+/*================================================================================
+ * PANELS
+ *================================================================================*/
+
+.panel
+{
+  /*background-color:white;*/
+  
+  border-radius: 5px 5px 0px 0px;
+  background-color: white;
+  margin-bottom: 20px;
+  border-bottom:solid 3px @c_dkGreen;
+
+}
+
+.panel-header
+{
+  /*border-bottom: 1px solid @c_mdGreen;
+  border-radius: 5px 5px 0px 0px;
+  */
+  padding:4px 10px;
+  font-size: 1.2em;
+  font-weight:bold;
+  color:@c_Orange;
+  background-color: white;
+  border-top: 3px solid @c_Orange;
+
+}
+.panel-entry
+{
+  border-bottom: 1px solid @c_mdGreen;
+  padding: 10px;
+}
+.panel ul
+{
+  margin:0px; 
+  list-style: none outside none;
+}
+
+.panel li
+{
+    border-bottom: 1px solid @c_mdGreen;
+    background-color: white;
+    padding: 5px 10px 6px 10px;
+    
+}
+
+/*================================================================================
+ * MAIN
+ *================================================================================*/
+
+.mainCol a
+{
+  text-decoration:none;
+}
+.mainCol a:hover
+{
+  text-decoration:none;
+}
+
+/*================================================================================
+ * SEARCH
+ *================================================================================*/
+
+#searchForm
+{
+  margin:10px;
+}
+
+#searchBox
+{
+  width:382px;
+}
+
+
+#resultContainer img.thumb
+{
+  width: 50px;
+  padding: 1px;
+  border: solid black 1px;
+  float: left;  
+}
+
+#resultContainer .searchData
+{
+  margin-left :10px ;
+  float: left;
+}
+
+#resultContainer .searchData .title
+{
+  font-weight: bold;
+}
+
+#resultContainer .address
+{
+  float: right;  
+  line-height: 15px;
+}
+  
+.float-clear
+{ 
+  clear:both;
+}
+
+#mapCanvas
+{
+  display:none;
+  height: 350px;
+  width:440px;
+  margin: 10px auto;
+  border: solid #666 1px;
+}
+
+#mapCanvas img{
+  max-width:none;
+}
+
+
+/*================================================================================
+ * ALERTS MSG CONTAINER
+ *================================================================================*/
+
+#msgContainer
+{
+  background-color: white;
+  margin-left:0px;
+}
+
+
+#msgContainer li.msg:last-child
+{
+  border-bottom:none;
+}
+
+#msgContainer [class^="icon-"] 
+{
+  padding-right:10px;
+  vertical-align:bottom;
+}
+
+#msgContainer button.dismiss {
+    clear:right;
+    float:right;
+    background: url("../img/dismiss.png") no-repeat scroll 0 2px transparent;
+    display: block;
+    height: 18px;
+    margin: 0 0 0 8px;
+    text-indent: -9999px;
+    width: 13px;
+    border-style:none;
+    -moz-box-sizing: content-box;
+}
+
+#msgContainer button.dismiss:hover {
+    background-position: 0 -48px;
+}
+
+/*================================================================================
+ * NEW ITEMS CONTAINER
+ *================================================================================*/
+ 
+#newItems .pane
+{
+  width:80px;
+  height:120px;
+  padding:6px;
+  margin:10px 0px 10px 10px;  
+  /*border:solid 1px #CCC;*/
+  -moz-box-shadow: 2px 2px 3px #888;
+  -webkit-box-shadow: 2px 2px 3px #888;
+  box-shadow: 2px 2px 3px #888;
+}
+
+#newitems
+{
+  float:left;
+}
+#newItems a
+{
+  text-decoration:none;
+  color: white;
+}
+#newItems ul
+{
+  list-style: none outside none;
+  padding:0;
+  margin:0;
+}
+ 
+#newItems li
+{
+  display: inline; 
+  list-style: none; 
+  float:left;
+  margin:0;
+  background-color: @c_Orange;
+}
+
+#newItems img
+{
+  width:100%;
+  /*border:solid 1px #ccc;*/
+}
+
+#newItems .caption
+{
+  width:100%;
+}
+
+#newItemsContainer #newPrev
+{
+  width:20px;
+  height:120px;
+  float:left;
+  position:relative;
+    margin-right:-4px;
+}
+#newItemsContainer #newNext
+{  width:20px;
+  height:120px;
+  float:right;
+  position:relative;}
+  
+#newItemsContainer #newPrev a
+{
+  background: url("../img/arrows.png") no-repeat scroll 0 0 transparent;
+  background-position: -2px -3px;
+  width:13px;
+  position: absolute;
+  top:50%;
+  left:8px;
+
+}
+
+
+#newItemsContainer #newNext a
+{
+  background: url("../img/arrows.png") no-repeat scroll 0 0 transparent;
+  background-position: -20px -3px;
+  width:13px;
+  position: absolute;
+  left:0px;
+  top:50%;
+}

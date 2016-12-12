@@ -1,0 +1,54 @@
+.searchResult
+{
+  border-bottom: 1px solid #ccc;
+  padding: 10px 0px;
+}
+
+.searchResult img.thumb
+{
+  width: 50px;
+  padding: 1px;
+  border: solid black 1px;
+  float: left;
+  
+}
+
+.searchResult .searchData
+{
+  margin-left :10px ;
+  float: left;
+}
+
+.searchResult .searchData .subtitle
+{
+  font-size: .87em;
+}
+
+.searchResult .searchData .title
+{
+  font-weight: bold;
+}
+
+.searchResult .address
+{
+  float: right;
+  font-size: .87em;
+  line-height: 15px;
+}
+  
+.float-clear
+{ 
+  clear:both;
+}
+
+#mapCanvas
+{
+  height: 350px;
+  width:460px;
+  margin: 20px auto;
+  border: solid #666 1px;
+}
+
+#mapCanvas img{
+  max-width:none;
+}

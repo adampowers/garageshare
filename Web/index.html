@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>GarageShare - Dashboard</title>
+    <meta name="description" content="">
+    <meta name="author" content="GarageShare Team">
+    
+    <!--  jQuery http://jquery.com/ -->
+    <script type="text/javascript" src="js/lib/jquery-1.7.1.min.js"></script>
+
+    <!-- Base Stylsheets http://twitter.github.com/bootstrap/ -->
+    <link rel="stylesheet/less" type="text/css" href="css/lib/bootstrap.less" >
+    <link rel="stylesheet" href="css/lib/jquery.fancybox.css" >
+
+    <!-- LESS Stylesheet  -->
+    <link rel="stylesheet/less" type="text/css" href="css/main.css">
+    <link rel="stylesheet/less" type="text/css" href="css/shim.css">
+    <link rel="stylesheet" type="text/css" href="css/side.css"> 
+
+    <!-- Bootstrap Javascripts http://twitter.github.com/bootstrap/javascript.html -->
+    <script type="text/javascript" src="js/lib/bootstrap.js"></script>
+
+    <!-- Fancybox Lightbox http://fancyapps.com/fancybox/#examples -->
+    <script src="js/lib/jquery.fancybox.js"></script>
+
+    <!-- LESS CSS (lesscss.org) -->
+    <script src="js/lib/less.js" type="text/javascript"></script>
+    
+    
+  <!-- Jquery ui -->
+    <link type="text/css" href="css/lib/jquery-ui-1.8.18.custom.css" rel="stylesheet" />	
+    <script type="text/javascript" src="js/lib/jquery-ui-1.8.18.custom.min.js"></script>
+
+ 
+    <!-- GarageShare Databases -->
+    <script type="text/javascript" src="js/lib/taffy-min.js"></script>  
+    <script type="text/javascript" src="js/item.js"></script>
+    <script type="text/javascript" src="js/user.js"></script>    
+    <script type="text/javascript" src="js/msg.js"></script>    
+    <script type="text/javascript" src="js/trans.js"></script>    
+    
+
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC0mZhm1vyN79tZWAeXh8c_B2dzn9Sdi8s&libraries=geometry&sensor=false"></script>
+
+
+    <!-- Your Javascripts -->
+    <script src="js/matt.js"></script>
+    <script src="js/adam.js"></script>
+    <script src="js/shim.js"></script> 
+    <script src="js/prof.js"></script>  
+    <script src="js/main.js"></script> 
+
+    
+  </head>
+
+<body> <!-- ------------------------------------------------------------- -->
+
+  <div class="row container" id="navRow">                   <!-- Nav row START -->
+		
+      
+  </div>                                          <!-- Nav row END -->
+
+<div class="container">                             <!-- Container START  -->
+  
+
+
+  <div class="row" id="mainRow">                  <!-- Main row START -->
+    
+    <div class="sideCol span3">            <!-- Main sidebar START -->
+	<!---------------------------------------------
+	Profile Pic Container
+	-------------------------------->
+	<div id="profPicContainer" class="panel" >
+		<div class="panel-header">My Profile</div>
+		 <ul>
+			<li>
+				<div id="profPic" > </div>
+					<div id="myRep"> Reputation:</div>
+				<div id="repMain"></div>
+			 </li>
+		 </ul>
+		</div> <!-- End Prof Pic --->
+	<!---------------------------------------------
+	My Friends Container
+	-------------------------------->
+			
+		<div id="myFriendsContainer" class="panel" >
+		<div class="panel-header">My Friends</div>
+		<ul>
+			<li>
+				<a href="#" > <div id="friend1Pic"> Friend 1 </div> </a>
+				<div id="locateF1"></div>
+				<div id="repF"></div>
+        <a href="javascript:void(0)" title="View Profile" class="proficon"><i class="icon-info-sign icon-white"></i></a>
+        <a href="javascript:void(0)" title="Send Message" class="proficon"><i class="icon-envelope icon-white"></i></a>
+        <a href="javascript:void(0)" title="Rate User" class="proficon"><i class="icon-leaf icon-white"></i></a>
+			</li>
+			<li> 
+				<div id="friend2Pic"> Friend 2 </div>
+				<div id="locateF2"></div>
+				<a href="javascript:void(0)" title="View Profile" class="proficon"><i class="icon-info-sign icon-white"></i></a>
+        <a href="javascript:void(0)" title="Send Message" class="proficon"><i class="icon-envelope icon-white"></i></a>
+        <a href="javascript:void(0)" title="Rate User" class="proficon"><i class="icon-leaf icon-white"></i></a>
+			</li>
+			<li> 
+				<div id="friend3Pic"> Friend 3 </div>
+				<div id="locateF3"></div>
+				<a href="javascript:void(0)" title="View Profile" class="proficon"><i class="icon-info-sign icon-white"></i></a>
+        <a href="javascript:void(0)" title="Send Message" class="proficon"><i class="icon-envelope icon-white"></i></a>
+        <a href="javascript:void(0)" title="Rate User" class="proficon"><i class="icon-leaf icon-white"></i></a>
+			</li>
+		</ul>
+		</div> <!--END MY FRIENDS CONTAINER --->
+ 	
+    </div>                                      <!-- Main sidebar END -->
+
+  
+    <div class="mainCol span6">            <!-- Body START -->    
+      <!-----------------------------------------------
+        CONTAINER FOR ALERT ITEMS
+        ----------------------------------------------->
+      <div id="msgContainer" class="panel"></div>
+
+      <!-----------------------------------------------
+        CONTAINER FOR SEARCH ITEMS
+        ----------------------------------------------->
+      <div id="searchContainer" class="panel">
+        <div class="panel-header">Search</div>
+        <form id="searchForm" class="form-inline" onSubmit="return searchClick();">    
+          <input id="searchBox"  class="span2" type="text" placeholder="Search...">
+          <button type="button" class="btn" onclick="searchClick();">Go</button>    
+        </form>
+        <div id="mapCanvas" ></div>
+        <div id="resultContainer"></div>      
+      </div>
+
+      <!-----------------------------------------------
+        CONTAINER FOR NEW ITEMS SLIDER
+        ----------------------------------------------->
+      <div id="newItemsContainer" class="panel">
+        <div class="panel-header">Latest Items</div>
+        <div id="newPrev"><a href="javascript:void(0)">&nbsp;&nbsp;</a></div>
+        <div id="newItems"></div>
+        <div id="newNext"><a href="javascript:void(0)">&nbsp;&nbsp;</a></div>
+        <div class='float-clear'></div>
+      </div>
+    
+    </div>                                      <!-- Body END -->
+    
+  
+    <div class="altCol span3">             <!-- Alternate sidebar START -->    
+      <div id="borrowedContainer" class="panel"> </div>
+      <div id="lentContainer" class="panel"> </div>
+    </div>                                      <!-- Alternate sidebar END -->
+    <div class="float-clear"></div>
+  </div>                                          <!-- Main row END -->        
+
+</div>                                          <!-- Container END -->
+      <!-----------------------------------------------
+        CONTAINER FOR DIALOGS
+        ----------------------------------------------->
+      <div id="dialog" title="Item Details" style="display:none">
+        <div class="itemPanel">
+          <a class="itemThumb" href="javascript:void(0)"><img class="thumb" src="image/noImageAvailable.jpg"></a>
+          <table class="itemData">
+            <tr><td colspan="3" class="title"></tr>
+            <tr class="similarItem"><td colspan="3"></tr>
+            <tr class="owner"><td class="ilabel">Owned by</td><td>:</td><td class="ivalue"></td></tr>
+            <tr class="desc"><td class="ilabel">Description</td><td>:</td><td class="ivalue"></td></tr>
+            <tr class="notes"><td class="ilabel">Notes</td><td>:</td><td class="ivalue"></td></tr>
+          </table>
+            
+        <div class="float-clear"></div>
+        </div>
+      </div>
+      <div id="minidialog" title="test" style="display:none">
+      </div>
+
+
+</body> <!-- ------------------------------------------------------------ -->
+</html>

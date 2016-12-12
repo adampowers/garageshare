@@ -1,0 +1,38 @@
+.rate {
+	margin-left: 135px;
+	margin-top: 50px;
+	position: absolute;
+	}
+.img	{
+  margin:2px;
+ 	border: 3px solid #cc3333;
+
+  }
+#locateF1{
+	margin-left: 60px;
+	margin-top: -38px;
+}
+#locateF2{
+	margin-left: 60px;
+	margin-top: -38px;
+}
+#locateF3{
+	margin-left: 60px;
+	margin-top: -38px;
+}
+.viewProf{
+	margin-left: 0px;
+}
+#myRep{
+	margin-left: 92px;
+	margin-top: -55px;
+	position: absolute;
+}
+ 
+.bold{
+	text-align: left;
+	font-weight: bold; 
+}
+
+  
+ 

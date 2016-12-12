@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="./js/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="./shimona.css">
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC0mZhm1vyN79tZWAeXh8c_B2dzn9Sdi8s&sensor=false">
+      
+    </script>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=geometry&sensor=false"></script>
+        <!--Add scripts -->
+    <script type="text/javascript" src="./js/taffydb/taffy.js"></script>    
+        <script type="text/javascript" src="./js/jquery.js"></script>
+    <script type="text/javascript" src="./js/item.js"></script>
+    <script type="text/javascript" src="./js/user.js"></script>
+    <script type="text/javascript">
+    //"use strict";
+      var map;
+      var userDB;
+      var itemDB;
+      var mapMarkersArray = [];
+      var infowindow;
+      var currentUser;
+
+      function initialize() {
+        var myOptions = {
+          center: new google.maps.LatLng(32.728879, -117.130164),
+          zoom: 15,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        map = new google.maps.Map(document.getElementById("mapCanvas"),
+            myOptions);
+        infowindow = new google.maps.InfoWindow({content:"test", pixelOffset: new google.maps.Size(32, 55)});
+        userDB = TAFFY();
+        userDB.insert(userList);
+        itemDB = TAFFY();
+        itemDB.insert(itemList);
+        currentUser = userDB({userId:1}).first();
+        if (currentUser == undefined) 
+        {
+          console.log("No userid found!!");
+        }
+      }
+
+
+    //    reloadAllItemsFromUser("1");
+    //userDB().each(function (r) {alert(r.title)});
+    function clearMapMarkers()
+    {
+      // Removes the overlays from the map, but keeps them in the array
+      if (mapMarkersArray) {
+        for (i in mapMarkersArray) {
+          mapMarkersArray[i].setMap(null);
+        }
+        mapMarkersArray.length = 0;
+      }
+    }
+    
+    function displayResultMap(result)
+    {
+      result.sort(function(a,b) {
+        return a.ownerId-b.ownerId});
+
+      clearMapMarkers();
+      var prevOwnerId = -1;
+      //For each row in the result
+      for (var i = 0; i < result.length; i++) 
+      {      
+        //Set r to each item
+        var r = result[i];
+        var image = "./img/tools.png";
+        if (r.ownerId != prevOwnerId)
+        {
+          var users = userDB({userId:r.ownerId});
+          users.each(function (u) {
+          if (u.lat.length > 0)
+            {
+              var myLatlng = new google.maps.LatLng(u.lat, u.lon);
+              var marker = new google.maps.Marker({ 
+                position: myLatlng,
+                map: map,
+                title: u.realName,
+                icon: image
+                });
+              var dist = google.maps.geometry.spherical.computeDistanceBetween(new google.maps.LatLng(currentUser.lat, currentUser.lon), myLatlng); 
+              dist = dist / 1609.344;
+              google.maps.event.addListener(marker, 'click', function() {
+                var contentString = '<div id="content">'+ u.realName + " has " + r.title + ' ' + dist.toFixed(1) + 'miles away</div>';
+                infowindow.setContent(contentString);
+                infowindow.setPosition(this.position);
+                
+                infowindow.open(map, this);
+              });
+              mapMarkersArray.push(marker);              
+            }
+          });
+          prevOwnerId = r.ownerId;
+        }
+      }
+            $('.searchData .title').mouseenter(function() {
+        mapMarkersArray[0].setAnimation(google.maps.Animation.BOUNCE);
+      });
+                  $('.searchData .title').mouseleave(function() {
+        mapMarkersArray[0].setAnimation(null);
+      });
+
+    }
+    
+    function displayAllItems()
+    {
+      var result = itemDB();
+      var datadiv = document.getElementById("itemContainer");
+      //For each result r
+      result.each(function (r) {
+      
+        //Create a child div called entry
+        var entry = document.createElement("div");
+        entry.className = "searchItem";
+        entry.id = "entry-" + r.itemId;
+        
+        //Fill the innerHTML with the following data.
+        entry.innerHTML = "<div class=title>title:" + r.title + "</div>description:";
+        entry.innerHTML += r.description;
+        datadiv.appendChild(entry);
+        });
+    }
+    
+    function clearAllChildren(el)
+    {
+          //Empty it of children so you can refill with current status
+      if ( el.hasChildNodes() )
+      {
+          while ( el.childNodes.length >= 1 )
+          {
+              el.removeChild( el.firstChild );       
+          } 
+      }
+    }
+    
+    function displayResultList(result)
+    {
+      var datadiv = document.getElementById("dataContainer");
+      clearAllChildren(datadiv);
+
+      //For each row in the result
+      for (var i = 0; i < result.length; i++) 
+      {      
+
+        //Set r to the specific result
+        var r = result[i];
+        
+        //Create a child div called entry
+        var entry = document.createElement("div");
+        entry.className = "searchResult";
+        entry.id = "entry-" + r.itemId;
+        
+        //Find the owner in the ownerDB
+        var owner = userDB({userId:r.ownerId}).first();
+        //alert(owner.realName);
+        //Build the string of innerHTML
+        var buildHTML;
+        buildHTML =  "<img class=\"thumb\" src=\"" + r.image + "\">";
+        buildHTML += "<div class=\"searchData\">\n<div class=\"title\">" + r.title + "</div>";
+        
+        buildHTML += "<div class=\"subtitle\">Owner:" + owner.realName + "</div></div>\n";
+        buildHTML += "<div class=\"address\">" + owner.addressL1 + "<br>" + owner.city + ", " + owner.state;
+        buildHTML += " " + owner.zip + "<br>858-775-8829</div>";
+        buildHTML += "<div class=\"float-clear\"></div>";
+        
+        //Set the string of innerHTML
+        entry.innerHTML = buildHTML;
+        //Add the child to datadiv
+        datadiv.appendChild(entry);
+
+      }
+      
+
+    }
+    function buttonClick()
+    {
+      var searchStr = document.getElementById("searchBox").value;
+      var result = itemDB({title:{likenocase:searchStr}}).get();
+      //alert(result.length);
+      displayResultList(result);
+      displayResultMap(result);
+      return false;
+    }
+    
+    </script>
+
+
+	</head>
+<body onload="initialize()">
+  <div id="searchContainer" class="well span6">
+    <form id="searchForm" class="form-inline span6" onSubmit="return buttonClick();">
+      <label for="searchBox">Search: </label>
+      <input id="searchBox" class="span2" type="text" >
+      <button type="button" class="btn" onclick="buttonClick();">Go</button>    
+    </form>
+    <div id="mapCanvas" ></div>
+    <div id="dataContainer">
+     
+    </div>    
+       
+  </div>
+
+	<div id="itemContainer"></div>
+</body>
+</html> 
